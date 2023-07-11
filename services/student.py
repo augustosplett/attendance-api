@@ -12,7 +12,7 @@ class Student:
         cursor = cnx.cursor()
         cursor.execute(query)
         names = cursor.fetchall()
-        #cnx.close()
+        cursor.close()
         return names
 
     def getStudentByID(id):
@@ -20,7 +20,7 @@ class Student:
         cursor = cnx.cursor()
         cursor.execute(query)
         name = cursor.fetchall()
-        #cnx.close()
+        cursor.close()
         return name
     
     #create a new student
@@ -32,7 +32,7 @@ class Student:
         cnx.commit()
         id = cursor.lastrowid
         newStudent = Student.getStudentByID(id)
-        #cnx.close()
+        cursor.close()
         return newStudent
 
     def updateStudent(student, id):
@@ -42,7 +42,6 @@ class Student:
         cnx.commit()
         newStudent = Student.getStudentByID(id)
         cursor.close()
-        #cnx.close()
         return newStudent
 
     def deleteStudent(id):
@@ -51,5 +50,4 @@ class Student:
         cursor.execute(query)
         cnx.commit()
         cursor.close()
-        #cnx.close()
         return True

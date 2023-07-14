@@ -1,6 +1,11 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from services.student import Student
+
+# use this block of imports if you want to connect with the database
+# from services.student import Student
+
+# use this block of imports if you don't want to connect with the database
+from services.fake_student import Student
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -13,7 +18,6 @@ def get_all_users():
 @app.route("/student/<user_id>")
 def get_user(user_id):
     return jsonify(Student.getStudentByID(user_id)),200
-    
 
 @app.route("/student", methods=["Post"])
 def create_user():
